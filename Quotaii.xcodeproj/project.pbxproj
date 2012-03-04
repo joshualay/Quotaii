@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		98DADE8B15032DCE0031FBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8A15032DCE0031FBC4 /* UIKit.framework */; };
+		98DADE8D15032DCE0031FBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8C15032DCE0031FBC4 /* Foundation.framework */; };
+		98DADE8F15032DCE0031FBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8E15032DCE0031FBC4 /* CoreGraphics.framework */; };
+		98DADE9515032DCE0031FBC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98DADE9315032DCE0031FBC4 /* InfoPlist.strings */; };
+		98DADE9715032DCE0031FBC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADE9615032DCE0031FBC4 /* main.m */; };
+		98DADE9B15032DCE0031FBC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADE9A15032DCE0031FBC4 /* AppDelegate.m */; };
+		98DADE9E15032DCE0031FBC4 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADE9D15032DCE0031FBC4 /* MasterViewController.m */; };
+		98DADEA115032DCE0031FBC4 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADEA015032DCE0031FBC4 /* DetailViewController.m */; };
+		98DADEA415032DCE0031FBC4 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98DADEA215032DCE0031FBC4 /* MasterViewController.xib */; };
+		98DADEA715032DCE0031FBC4 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98DADEA515032DCE0031FBC4 /* DetailViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		98DADE8615032DCE0031FBC4 /* Quotaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quotaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98DADE8A15032DCE0031FBC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		98DADE8C15032DCE0031FBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		98DADE8E15032DCE0031FBC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		98DADE9215032DCE0031FBC4 /* Quotaii-Info.plist */ = {isa = PBXFileReference; path = "Quotaii-Info.plist"; sourceTree = "<group>"; };
+		98DADE9415032DCE0031FBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		98DADE9615032DCE0031FBC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		98DADE9815032DCE0031FBC4 /* Quotaii-Prefix.pch */ = {isa = PBXFileReference; path = "Quotaii-Prefix.pch"; sourceTree = "<group>"; };
+		98DADE9915032DCE0031FBC4 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		98DADE9A15032DCE0031FBC4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		98DADE9C15032DCE0031FBC4 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		98DADE9D15032DCE0031FBC4 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		98DADE9F15032DCE0031FBC4 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		98DADEA015032DCE0031FBC4 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		98DADEA315032DCE0031FBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
+		98DADEA615032DCE0031FBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		98DADE8315032DCE0031FBC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98DADE8B15032DCE0031FBC4 /* UIKit.framework in Frameworks */,
+				98DADE8D15032DCE0031FBC4 /* Foundation.framework in Frameworks */,
+				98DADE8F15032DCE0031FBC4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		98DADE7B15032DCD0031FBC4 = {
+			isa = PBXGroup;
+			children = (
+				98DADE9015032DCE0031FBC4 /* Quotaii */,
+				98DADE8915032DCE0031FBC4 /* Frameworks */,
+				98DADE8715032DCE0031FBC4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		98DADE8715032DCE0031FBC4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98DADE8615032DCE0031FBC4 /* Quotaii.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98DADE8915032DCE0031FBC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98DADE8A15032DCE0031FBC4 /* UIKit.framework */,
+				98DADE8C15032DCE0031FBC4 /* Foundation.framework */,
+				98DADE8E15032DCE0031FBC4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		98DADE9015032DCE0031FBC4 /* Quotaii */ = {
+			isa = PBXGroup;
+			children = (
+				98DADE9915032DCE0031FBC4 /* AppDelegate.h */,
+				98DADE9A15032DCE0031FBC4 /* AppDelegate.m */,
+				98DADE9C15032DCE0031FBC4 /* MasterViewController.h */,
+				98DADE9D15032DCE0031FBC4 /* MasterViewController.m */,
+				98DADE9F15032DCE0031FBC4 /* DetailViewController.h */,
+				98DADEA015032DCE0031FBC4 /* DetailViewController.m */,
+				98DADEA215032DCE0031FBC4 /* MasterViewController.xib */,
+				98DADEA515032DCE0031FBC4 /* DetailViewController.xib */,
+				98DADE9115032DCE0031FBC4 /* Supporting Files */,
+			);
+			path = Quotaii;
+			sourceTree = "<group>";
+		};
+		98DADE9115032DCE0031FBC4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				98DADE9215032DCE0031FBC4 /* Quotaii-Info.plist */,
+				98DADE9315032DCE0031FBC4 /* InfoPlist.strings */,
+				98DADE9615032DCE0031FBC4 /* main.m */,
+				98DADE9815032DCE0031FBC4 /* Quotaii-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		98DADE8515032DCE0031FBC4 /* Quotaii */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98DADEAA15032DCE0031FBC4 /* Build configuration list for PBXNativeTarget "Quotaii" */;
+			buildPhases = (
+				98DADE8215032DCE0031FBC4 /* Sources */,
+				98DADE8315032DCE0031FBC4 /* Frameworks */,
+				98DADE8415032DCE0031FBC4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Quotaii;
+			productName = Quotaii;
+			productReference = 98DADE8615032DCE0031FBC4 /* Quotaii.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98DADE7D15032DCD0031FBC4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Joshua Lay";
+			};
+			buildConfigurationList = 98DADE8015032DCE0031FBC4 /* Build configuration list for PBXProject "Quotaii" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 98DADE7B15032DCD0031FBC4;
+			productRefGroup = 98DADE8715032DCE0031FBC4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				98DADE8515032DCE0031FBC4 /* Quotaii */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		98DADE8415032DCE0031FBC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98DADE9515032DCE0031FBC4 /* InfoPlist.strings in Resources */,
+				98DADEA415032DCE0031FBC4 /* MasterViewController.xib in Resources */,
+				98DADEA715032DCE0031FBC4 /* DetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		98DADE8215032DCE0031FBC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98DADE9715032DCE0031FBC4 /* main.m in Sources */,
+				98DADE9B15032DCE0031FBC4 /* AppDelegate.m in Sources */,
+				98DADE9E15032DCE0031FBC4 /* MasterViewController.m in Sources */,
+				98DADEA115032DCE0031FBC4 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		98DADE9315032DCE0031FBC4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98DADE9415032DCE0031FBC4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		98DADEA215032DCE0031FBC4 /* MasterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98DADEA315032DCE0031FBC4 /* en */,
+			);
+			name = MasterViewController.xib;
+			sourceTree = "<group>";
+		};
+		98DADEA515032DCE0031FBC4 /* DetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98DADEA615032DCE0031FBC4 /* en */,
+			);
+			name = DetailViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		98DADEA815032DCE0031FBC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		98DADEA915032DCE0031FBC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		98DADEAB15032DCE0031FBC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quotaii/Quotaii-Prefix.pch";
+				INFOPLIST_FILE = "Quotaii/Quotaii-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		98DADEAC15032DCE0031FBC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Quotaii/Quotaii-Prefix.pch";
+				INFOPLIST_FILE = "Quotaii/Quotaii-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		98DADE8015032DCE0031FBC4 /* Build configuration list for PBXProject "Quotaii" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98DADEA815032DCE0031FBC4 /* Debug */,
+				98DADEA915032DCE0031FBC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98DADEAA15032DCE0031FBC4 /* Build configuration list for PBXNativeTarget "Quotaii" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98DADEAB15032DCE0031FBC4 /* Debug */,
+				98DADEAC15032DCE0031FBC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98DADE7D15032DCD0031FBC4 /* Project object */;
+}
