@@ -7,18 +7,25 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
+
+@interface MasterViewController (PrivateMethods)
+- (void)doSomething:(iiFeed *)iiFeed;
+@end
 
 @implementation MasterViewController
 
 @synthesize detailViewController = _detailViewController;
+@synthesize volumeUsageProvider  = _volumeUsageProvider;
+@synthesize accountProvider      = _accountProvider;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Master", @"Master");
+        self.volumeUsageProvider = [[iiVolumeUsageProvider alloc] init];
+        self.volumeUsageProvider.delegate = self;
     }
     return self;
 }
@@ -34,7 +41,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+    dispatch_async(queue, ^{
+        iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Got volume usage");
+            [self doSomething:iiFeed];
+        });
+    });
+}
+
+- (void)doSomething:(iiFeed *)iiFeed {
+    NSLog(@"iiFeed: %@", iiFeed);
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"FEED" message:[NSString stringWithFormat:@"Product: %@", iiFeed.accountInfo.product] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alertView show];
 }
 
 - (void)viewDidUnload
@@ -44,25 +66,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -97,50 +100,39 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.detailViewController) {
         self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     }
     [self.navigationController pushViewController:self.detailViewController animated:YES];
+}
+
+
+#pragma mark - iiVolumeUsageProviderDelegate
+// @required
+
+- (void)didHaveAuthenticationError:(NSString *)message {
+    
+}
+
+// Provide the username to the Provider
+- (NSString *)accountUsername {
+    return [self.accountProvider username];
+}
+
+// Provide the password to the Provider
+- (NSString *)accountPassword {
+    return [self.accountProvider password];
+}
+
+// @optional
+- (void)didBeginRetrieveUsage {
+    NSLog(@"didBeginRetrieveUsage");
+}
+
+- (void)didFinishRetrieveUsage {
+    NSLog(@"didFinishRetrieveUsage");
 }
 
 @end
