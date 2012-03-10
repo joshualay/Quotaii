@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AccountProviderDelegate <NSObject>
+@class AccountDetails;
 
-@end
-
-@interface AccountProvider : NSObject
-
-@property (nonatomic, weak) id<AccountProviderDelegate> delegate;
+@interface AccountProvider : NSObject {
+    AccountDetails *_accountDetails;
+}
 
 - (NSString *)username;
 - (NSString *)password;
+
+- (BOOL)hasAccountInformation;
+- (void)store:(AccountDetails *)accountDetails;
+
 
 @end

@@ -142,6 +142,11 @@ NSInteger const kMillisecondsToMinutes = 60000;
     self->_lastRetrieved = nil;
 }
 
+- (BOOL)hasRetrievedUsage {
+    iiFeed *feed = [[iiFeed alloc] initFeedWith:self->_accountInfo volumeUsage:self->_volumeUsage connection:self->_connection];
+    return (feed == nil) ? NO : YES;
+}
+
 #pragma mark - NSXMLParserDelegate
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     if (self->_errorFlagged)
@@ -237,7 +242,7 @@ NSInteger const kMillisecondsToMinutes = 60000;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if (self->_errorFlagged && ![self->_error isEqualToString:@""])
+    if (self->_errorFlagged && self->_error != nil)
         return;
     
     if (self->_errorFlagged && [elementName isEqualToString:XMLElementError])

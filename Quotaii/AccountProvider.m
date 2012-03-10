@@ -7,17 +7,61 @@
 //
 
 #import "AccountProvider.h"
+#import "AccountDetails.h"
+
+@interface AccountProvider (PrivateMethods)
+- (AccountDetails *)retrieveAccountDetailsOrNil;
+- (void)retrieveAccountInformation;
+@end
 
 @implementation AccountProvider
 
-@synthesize delegate = _delegate;
+- (id)init {
+    self = [super init];
+    if (self != nil) {
+        [self retrieveAccountInformation];
+    }
+    return self;
+}
+
+- (BOOL)hasAccountInformation {
+    return (self->_accountDetails == nil) ? NO : YES;
+}
+
+- (void)retrieveAccountInformation {
+    AccountDetails *ad = [self retrieveAccountDetailsOrNil];
+    if (ad == nil) {
+        // TODO: Throw error
+        return;
+    }
+    
+    self->_accountDetails = ad;
+}
+
+- (void)store:(AccountDetails *)accountDetails {
+    // TODO: Throw an error
+    if (accountDetails == nil)
+        return;
+    
+    self->_accountDetails = accountDetails;
+    
+    // TODO: Store in keychain!
+}
 
 - (NSString *)username {
-    return @"";
+    return [self->_accountDetails username];
 }
 
 - (NSString *)password {
-    return @"";
+    return [self->_accountDetails password];
 }
+
+
+// PRIVATE
+- (AccountDetails *)retrieveAccountDetailsOrNil {
+    // TODO -- actually look them up
+    return self->_accountDetails;
+}
+
 
 @end

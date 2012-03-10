@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		983E1995150A3760001E6684 /* DDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E1994150A3760001E6684 /* DDProgressView.m */; };
 		983E1999150A3B75001E6684 /* AccountProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E1998150A3B75001E6684 /* AccountProvider.m */; };
+		983E199C150B826F001E6684 /* AccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E199B150B826F001E6684 /* AccountDetails.m */; };
+		983E19A0150B894C001E6684 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E199E150B894C001E6684 /* AccountDetailsViewController.m */; };
+		983E19A1150B894C001E6684 /* AccountDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 983E199F150B894C001E6684 /* AccountDetailsViewController.xib */; };
 		98DADE8B15032DCE0031FBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8A15032DCE0031FBC4 /* UIKit.framework */; };
 		98DADE8D15032DCE0031FBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8C15032DCE0031FBC4 /* Foundation.framework */; };
 		98DADE8F15032DCE0031FBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8E15032DCE0031FBC4 /* CoreGraphics.framework */; };
@@ -39,8 +42,13 @@
 /* Begin PBXFileReference section */
 		983E1993150A3760001E6684 /* DDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDProgressView.h; sourceTree = "<group>"; };
 		983E1994150A3760001E6684 /* DDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDProgressView.m; sourceTree = "<group>"; };
-		983E1997150A3B75001E6684 /* AccountProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AccountProvider.h; sourceTree = "<group>"; };
+		983E1997150A3B75001E6684 /* AccountProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountProvider.h; sourceTree = "<group>"; };
 		983E1998150A3B75001E6684 /* AccountProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountProvider.m; sourceTree = "<group>"; };
+		983E199A150B826F001E6684 /* AccountDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDetails.h; sourceTree = "<group>"; };
+		983E199B150B826F001E6684 /* AccountDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDetails.m; sourceTree = "<group>"; };
+		983E199D150B894C001E6684 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDetailsViewController.h; sourceTree = "<group>"; };
+		983E199E150B894C001E6684 /* AccountDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDetailsViewController.m; sourceTree = "<group>"; };
+		983E199F150B894C001E6684 /* AccountDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsViewController.xib; sourceTree = "<group>"; };
 		98DADE8615032DCE0031FBC4 /* Quotaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quotaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DADE8A15032DCE0031FBC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		98DADE8C15032DCE0031FBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -151,6 +159,11 @@
 				983E1994150A3760001E6684 /* DDProgressView.m */,
 				983E1997150A3B75001E6684 /* AccountProvider.h */,
 				983E1998150A3B75001E6684 /* AccountProvider.m */,
+				983E199A150B826F001E6684 /* AccountDetails.h */,
+				983E199B150B826F001E6684 /* AccountDetails.m */,
+				983E199D150B894C001E6684 /* AccountDetailsViewController.h */,
+				983E199E150B894C001E6684 /* AccountDetailsViewController.m */,
+				983E199F150B894C001E6684 /* AccountDetailsViewController.xib */,
 			);
 			path = Quotaii;
 			sourceTree = "<group>";
@@ -253,6 +266,7 @@
 				98DADEA415032DCE0031FBC4 /* MasterViewController.xib in Resources */,
 				98DADEA715032DCE0031FBC4 /* DetailViewController.xib in Resources */,
 				98DADEAE15032DE60031FBC4 /* README.md in Resources */,
+				983E19A1150B894C001E6684 /* AccountDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +296,8 @@
 				98DADEDC150331200031FBC4 /* XMLElements.m in Sources */,
 				983E1995150A3760001E6684 /* DDProgressView.m in Sources */,
 				983E1999150A3B75001E6684 /* AccountProvider.m in Sources */,
+				983E199C150B826F001E6684 /* AccountDetails.m in Sources */,
+				983E19A0150B894C001E6684 /* AccountDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

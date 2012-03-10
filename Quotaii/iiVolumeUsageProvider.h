@@ -80,6 +80,8 @@ I'm not storing any authentication details in the provider. I feel it's better s
 
 + (iiVolumeUsageProvider *)sharedSingleton;
 
+- (BOOL)hasRetrievedUsage;
+
 - (iiFeed *)retrieveUsage;
 - (void)resetCache;
 

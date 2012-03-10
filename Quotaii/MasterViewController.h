@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "iiVolumeUsageProvider.h"
-#import "AccountProvider.h"
+#import "AccountDetailsViewController.h"
 
+@class AccountProvider;
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <iiVolumeUsageProviderDelegate, AccountProviderDelegate>
+@interface MasterViewController : UITableViewController <iiVolumeUsageProviderDelegate, AccountDetailsViewControllerDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) iiVolumeUsageProvider *volumeUsageProvider;
 @property (strong, nonatomic) AccountProvider *accountProvider;
+
+
+- (void)retrieveVolumeUsage;
 
 @end

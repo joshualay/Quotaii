@@ -15,7 +15,7 @@
 @synthesize connection  = _connection;
 
 - (id)initFeedWith:(iiAccountInfo *)accountInfo volumeUsage:(iiVolumeUsage *)volumeUsage connection:(iiConnection *)connection {
-    if (accountInfo == nil && volumeUsage == nil)
+    if (accountInfo == nil && volumeUsage == nil && connection == nil)
         return nil;
     
     self = [super init];

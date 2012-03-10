@@ -8,9 +8,11 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "AccountProvider.h"
+#import "AccountDetails.h"
 
 @interface MasterViewController (PrivateMethods)
-- (void)doSomething:(iiFeed *)iiFeed;
+
 @end
 
 @implementation MasterViewController
@@ -26,6 +28,8 @@
         self.title = NSLocalizedString(@"Master", @"Master");
         self.volumeUsageProvider = [[iiVolumeUsageProvider alloc] init];
         self.volumeUsageProvider.delegate = self;
+        
+        self.accountProvider = [[AccountProvider alloc] init];                                
     }
     return self;
 }
@@ -41,22 +45,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    if (![self.accountProvider hasAccountInformation]) {
+        AccountDetailsViewController *vc = [[AccountDetailsViewController alloc] initWithNibName:@"AccountDetailsViewController" bundle:nil];
+        vc.delegate = self;
+        [self presentModalViewController:vc animated:NO];
+        
+        return;
+    }
+    
+    [self retrieveVolumeUsage];
+
+}
+
+- (void)retrieveVolumeUsage {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue, ^{
         iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"Got volume usage");
-            [self doSomething:iiFeed];
         });
-    });
-}
-
-- (void)doSomething:(iiFeed *)iiFeed {
-    NSLog(@"iiFeed: %@", iiFeed);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"FEED" message:[NSString stringWithFormat:@"Product: %@", iiFeed.accountInfo.product] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alertView show];
+    });    
 }
 
 - (void)viewDidUnload
@@ -113,7 +123,10 @@
 // @required
 
 - (void)didHaveAuthenticationError:(NSString *)message {
+    UIAlertView *authAlert = [[UIAlertView alloc] initWithTitle:@"Login failed" message:@"Your account details appear to be incorrect. Please try again." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Try again", nil];
+    [authAlert show];
     
+    // TODO -- Handle try again to present AccountDetailsViewController
 }
 
 // Provide the username to the Provider
@@ -133,6 +146,14 @@
 
 - (void)didFinishRetrieveUsage {
     NSLog(@"didFinishRetrieveUsage");
+}
+
+#pragma mark - AccountDetailsViewControllerDelegate
+- (void)didRetrieveAccountUsername:(NSString *)username Password:(NSString *)password {
+    AccountDetails *ad = [[AccountDetails alloc] initWithUsername:username Password:password];
+    [self.accountProvider store:ad];
+    [self retrieveVolumeUsage];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
