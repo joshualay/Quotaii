@@ -23,7 +23,6 @@
 		98DADEA415032DCE0031FBC4 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98DADEA215032DCE0031FBC4 /* MasterViewController.xib */; };
 		98DADEA715032DCE0031FBC4 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98DADEA515032DCE0031FBC4 /* DetailViewController.xib */; };
 		98DADEAE15032DE60031FBC4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 98DADEAD15032DE60031FBC4 /* README.md */; };
-		98DADEB115032EE10031FBC4 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADEB015032EE10031FBC4 /* Keychain.m */; };
 		98DADEB3150330610031FBC4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADEB2150330610031FBC4 /* Security.framework */; };
 		98DADED1150331200031FBC4 /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADEB9150331200031FBC4 /* Errors.m */; };
 		98DADED2150331200031FBC4 /* iiAccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADEBB150331200031FBC4 /* iiAccountInfo.m */; };
@@ -66,8 +65,6 @@
 		98DADEA315032DCE0031FBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
 		98DADEA615032DCE0031FBC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		98DADEAD15032DE60031FBC4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		98DADEAF15032EE10031FBC4 /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
-		98DADEB015032EE10031FBC4 /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
 		98DADEB2150330610031FBC4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		98DADEB8150331200031FBC4 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
 		98DADEB9150331200031FBC4 /* Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Errors.m; sourceTree = "<group>"; };
@@ -152,9 +149,6 @@
 				98DADEA015032DCE0031FBC4 /* DetailViewController.m */,
 				98DADEA215032DCE0031FBC4 /* MasterViewController.xib */,
 				98DADEA515032DCE0031FBC4 /* DetailViewController.xib */,
-				98DADE9115032DCE0031FBC4 /* Supporting Files */,
-				98DADEAF15032EE10031FBC4 /* Keychain.h */,
-				98DADEB015032EE10031FBC4 /* Keychain.m */,
 				983E1993150A3760001E6684 /* DDProgressView.h */,
 				983E1994150A3760001E6684 /* DDProgressView.m */,
 				983E1997150A3B75001E6684 /* AccountProvider.h */,
@@ -164,6 +158,7 @@
 				983E199D150B894C001E6684 /* AccountDetailsViewController.h */,
 				983E199E150B894C001E6684 /* AccountDetailsViewController.m */,
 				983E199F150B894C001E6684 /* AccountDetailsViewController.xib */,
+				98DADE9115032DCE0031FBC4 /* Supporting Files */,
 			);
 			path = Quotaii;
 			sourceTree = "<group>";
@@ -281,7 +276,6 @@
 				98DADE9B15032DCE0031FBC4 /* AppDelegate.m in Sources */,
 				98DADE9E15032DCE0031FBC4 /* MasterViewController.m in Sources */,
 				98DADEA115032DCE0031FBC4 /* DetailViewController.m in Sources */,
-				98DADEB115032EE10031FBC4 /* Keychain.m in Sources */,
 				98DADED1150331200031FBC4 /* Errors.m in Sources */,
 				98DADED2150331200031FBC4 /* iiAccountInfo.m in Sources */,
 				98DADED3150331200031FBC4 /* iiConnection.m in Sources */,

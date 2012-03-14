@@ -13,13 +13,10 @@
 @class AccountProvider;
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <iiVolumeUsageProviderDelegate, AccountDetailsViewControllerDelegate>
+@interface MasterViewController : UITableViewController <iiVolumeUsageProviderDelegate, AccountDetailsViewControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) iiVolumeUsageProvider *volumeUsageProvider;
 @property (strong, nonatomic) AccountProvider *accountProvider;
-
-
-- (void)retrieveVolumeUsage;
 
 @end

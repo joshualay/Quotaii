@@ -78,8 +78,6 @@ I'm not storing any authentication details in the provider. I feel it's better s
 @property (nonatomic, strong) id delegate;
 @property (readonly) NSString *error;
 
-+ (iiVolumeUsageProvider *)sharedSingleton;
-
 - (BOOL)hasRetrievedUsage;
 
 - (iiFeed *)retrieveUsage;

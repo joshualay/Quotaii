@@ -19,6 +19,7 @@
 
 - (BOOL)hasAccountInformation;
 - (void)store:(AccountDetails *)accountDetails;
+- (void)resetAccount;
 
 
 @end

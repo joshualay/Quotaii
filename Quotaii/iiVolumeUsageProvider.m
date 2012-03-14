@@ -38,17 +38,6 @@ NSInteger const kMillisecondsToMinutes = 60000;
     return self;
 }
 
-+ (iiVolumeUsageProvider *)sharedSingleton {
-    static iiVolumeUsageProvider *sharedSingleton;
-    
-    @synchronized(self) {
-        if (!sharedSingleton)
-            sharedSingleton = [[iiVolumeUsageProvider alloc] init];
-        
-        return sharedSingleton;
-    }
-}
-
 - (iiFeed *)retrieveUsage {
     if ([self.delegate respondsToSelector:@selector(didBeginRetrieveUsage)])
         [self.delegate didBeginRetrieveUsage];
@@ -64,6 +53,9 @@ NSInteger const kMillisecondsToMinutes = 60000;
             return [self->_cache objectForKey:kCacheFeedKey];
         }
     }
+    
+    self->_errorFlagged = NO;
+    self->_error = nil;
     
     // Don't put the responsibility of account management in this class
     NSString *username = [self.delegate accountUsername];

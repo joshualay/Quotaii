@@ -12,7 +12,9 @@
 #import "AccountDetails.h"
 
 @interface MasterViewController (PrivateMethods)
-
+- (void)presentVolumeUsage:(iiFeed *)iiFeed;
+- (void)presentAccountDetailsView:(BOOL)animate;
+- (void)retrieveVolumeUsage;
 @end
 
 @implementation MasterViewController
@@ -25,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        self.title = NSLocalizedString(@"Quotaii", @"Quotaii");
         self.volumeUsageProvider = [[iiVolumeUsageProvider alloc] init];
         self.volumeUsageProvider.delegate = self;
         
@@ -46,16 +48,36 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"viewDidLoad");
+    
     if (![self.accountProvider hasAccountInformation]) {
-        AccountDetailsViewController *vc = [[AccountDetailsViewController alloc] initWithNibName:@"AccountDetailsViewController" bundle:nil];
-        vc.delegate = self;
-        [self presentModalViewController:vc animated:NO];
-        
+        [self presentAccountDetailsView:NO];
         return;
     }
     
     [self retrieveVolumeUsage];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+#pragma mark - PrivateMethods
+- (void)presentAccountDetailsView:(BOOL)animate {
+    AccountDetailsViewController *vc = [[AccountDetailsViewController alloc] initWithNibName:@"AccountDetailsViewController" bundle:nil];
+    vc.delegate = self;
+    [self presentModalViewController:vc animated:animate];
 }
 
 - (void)retrieveVolumeUsage {
@@ -64,25 +86,18 @@
         iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Got volume usage");
+            NSLog(@"Got volume usage: %@", iiFeed);
+            [self presentVolumeUsage:iiFeed];
         });
     });    
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)presentVolumeUsage:(iiFeed *)iiFeed {
+    [self dismissModalViewControllerAnimated:NO];
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
+#pragma mark - UITableViewController
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -123,10 +138,11 @@
 // @required
 
 - (void)didHaveAuthenticationError:(NSString *)message {
-    UIAlertView *authAlert = [[UIAlertView alloc] initWithTitle:@"Login failed" message:@"Your account details appear to be incorrect. Please try again." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Try again", nil];
-    [authAlert show];
-    
-    // TODO -- Handle try again to present AccountDetailsViewController
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.accountProvider resetAccount];
+        UIAlertView *authAlert = [[UIAlertView alloc] initWithTitle:@"Login failed" message:@"Your account details appear to be incorrect. Please try again." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Try again", nil];
+        [authAlert show];
+    });
 }
 
 // Provide the username to the Provider
@@ -148,12 +164,43 @@
     NSLog(@"didFinishRetrieveUsage");
 }
 
+- (void)didHaveConnectionError:(NSString *)message {
+    NSLog(@"didHaveConnectionError: %@", message);
+}
+
+- (void)didHaveParsingError:(NSString *)message {
+    NSLog(@"didHaveParsingError: %@", message);
+}
+
+- (void)didHaveXMLConstructionError {
+    NSLog(@"didHaveXMLConstructionError");
+}
+ 
+- (void)didHaveToolboxUnderLoadError:(NSString *)message {
+    NSLog(@"didHaveToolboxUnderLoadError");
+}
+
+- (void)didHaveGenericError:(NSString *)messageOrNil {
+    NSLog(@"didHaveGenericError: %@", messageOrNil);
+}
+
+- (void)didUseCachedResult {
+    NSLog(@"didUseCachedResult");
+}
+
 #pragma mark - AccountDetailsViewControllerDelegate
 - (void)didRetrieveAccountUsername:(NSString *)username Password:(NSString *)password {
     AccountDetails *ad = [[AccountDetails alloc] initWithUsername:username Password:password];
     [self.accountProvider store:ad];
     [self retrieveVolumeUsage];
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - UIAlertViewDelegate 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"present alert view");
+    [self presentAccountDetailsView:YES];
+    NSLog(@"alertView clickedButtonAtIndex: %i", buttonIndex);
 }
 
 @end

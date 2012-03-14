@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Joshua Lay. All rights reserved.
 //
 
+
 #import "AccountProvider.h"
 #import "AccountDetails.h"
 
@@ -28,15 +29,6 @@
     return (self->_accountDetails == nil) ? NO : YES;
 }
 
-- (void)retrieveAccountInformation {
-    AccountDetails *ad = [self retrieveAccountDetailsOrNil];
-    if (ad == nil) {
-        // TODO: Throw error
-        return;
-    }
-    
-    self->_accountDetails = ad;
-}
 
 - (void)store:(AccountDetails *)accountDetails {
     // TODO: Throw an error
@@ -44,8 +36,10 @@
         return;
     
     self->_accountDetails = accountDetails;
-    
-    // TODO: Store in keychain!
+}
+
+- (void)resetAccount {
+
 }
 
 - (NSString *)username {
@@ -58,8 +52,25 @@
 
 
 // PRIVATE
+- (void)retrieveAccountInformation {
+    AccountDetails *ad = [self retrieveAccountDetailsOrNil];
+    if (ad == nil) {
+        // TODO: Throw error
+        return;
+    }
+    
+    self->_accountDetails = ad;
+}
+
 - (AccountDetails *)retrieveAccountDetailsOrNil {
-    // TODO -- actually look them up
+    NSString *username = @"";
+    if (username == nil || [username isEqualToString:@""])
+        return nil;
+    
+    AccountDetails *accountDetails = [[AccountDetails alloc] initWithUsername:username 
+                                                                     Password:@""];
+    self->_accountDetails = accountDetails;
+    
     return self->_accountDetails;
 }
 
