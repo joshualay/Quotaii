@@ -63,12 +63,13 @@
 }
 
 - (AccountDetails *)retrieveAccountDetailsOrNil {
+    // TODO
     NSString *username = @"";
     if (username == nil || [username isEqualToString:@""])
         return nil;
     
     AccountDetails *accountDetails = [[AccountDetails alloc] initWithUsername:username 
-                                                                     Password:@""];
+                                                                     Password:@"0"];
     self->_accountDetails = accountDetails;
     
     return self->_accountDetails;

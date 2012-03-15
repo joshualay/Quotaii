@@ -13,7 +13,9 @@
 @class AccountProvider;
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <iiVolumeUsageProviderDelegate, AccountDetailsViewControllerDelegate, UIAlertViewDelegate>
+@interface MasterViewController : UIViewController <iiVolumeUsageProviderDelegate, AccountDetailsViewControllerDelegate, UIAlertViewDelegate> {
+    UIActivityIndicatorView *_activityIndicator;
+}
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) iiVolumeUsageProvider *volumeUsageProvider;

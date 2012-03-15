@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "AccountProvider.h"
 #import "AccountDetails.h"
+#import "DDProgressView.h"
 
 @interface MasterViewController (PrivateMethods)
 - (void)presentVolumeUsage:(iiFeed *)iiFeed;
@@ -50,6 +51,14 @@
     
     NSLog(@"viewDidLoad");
     
+    self->_activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGRect viewFrame = self.view.frame;
+    self->_activityIndicator.frame = CGRectMake((viewFrame.size.width / 2) - 20.0f, viewFrame.size.height/2, 40.0f, 40.0f);
+    self->_activityIndicator.backgroundColor = [UIColor blackColor];
+    
+    [self->_activityIndicator startAnimating];
+    [self.view addSubview:self->_activityIndicator];
+    
     if (![self.accountProvider hasAccountInformation]) {
         [self presentAccountDetailsView:NO];
         return;
@@ -86,6 +95,9 @@
         iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self->_activityIndicator stopAnimating];
+            [self->_activityIndicator removeFromSuperview];
+            
             NSLog(@"Got volume usage: %@", iiFeed);
             [self presentVolumeUsage:iiFeed];
         });
@@ -93,44 +105,58 @@
 }
 
 - (void)presentVolumeUsage:(iiFeed *)iiFeed {
-    [self dismissModalViewControllerAnimated:NO];
-}
-
-
-#pragma mark - UITableViewController
-// Customize the number of sections in the table view.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    float xOffset = 8.0f;
+    
+    float yOffset = 20.0f;    
+    float labelHeight = 22.0f;
+    float labelOffset = 20.0f;
+    float usageBarHeight = 54.0f;
+    float usageBarWidth = 300.0f;
+    
+    for (iiTraffic *trafficType in iiFeed.volumeUsage.expectedTrafficList) {
+        NSLog(@"Quota: %i, Type: %i", trafficType.quota, trafficType.trafficType);
+        
+        NSInteger quota = trafficType.quota;
+        // Freezone && Uploads
+        if (quota == 0) {
+            continue; 
+        }
+        
+        NSInteger used  = (NSInteger)(trafficType.used / 1024.0f / 1024.0f);        
+        float usagePercentage = (float)used / (float)quota;
+        
+        DDProgressView *usageBar = [[DDProgressView alloc] initWithFrame:CGRectMake(xOffset, yOffset, usageBarWidth, usageBarHeight)];
+        UILabel *typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(xOffset, yOffset + labelOffset + usageBarHeight, usageBarWidth, labelHeight)];
+        
+        NSString *trafficTypeName = nil;
+        switch (trafficType.trafficType) {
+            case iiTrafficTypeAnytime:
+                trafficTypeName = @"Anytime";
+                break;
+            case iiTrafficTypePeak:
+                trafficTypeName = @"Peak";
+                break;
+            case iiTrafficTypeOffPeak:
+                trafficTypeName = @"Offpeak";
+                break;
+            default:
+                break;
+        }
+        
+        int roundedUsagePercentage = (int)(usagePercentage * 100);
+        
+        typeLabel.text = [NSString stringWithFormat:@"%@ (%i%%)", trafficTypeName, roundedUsagePercentage];
+        
+        [usageBar setProgress:usagePercentage];
+        
+        [self.view addSubview:typeLabel];
+        [self.view addSubview:usageBar];
+        
+        yOffset += (usageBarHeight + labelHeight + labelOffset);
     }
-
-    // Configure the cell.
-    cell.textLabel.text = NSLocalizedString(@"Detail", @"Detail");
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    }
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    
+    [self dismissModalViewControllerAnimated:NO];
 }
 
 

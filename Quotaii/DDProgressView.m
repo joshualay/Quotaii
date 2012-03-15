@@ -51,15 +51,15 @@
 
 - (void)setFrame:(CGRect)frame
 {
-	// we set the height ourselves since it is fixed
-	frame.size.height = kProgressBarHeight ;
+	// NO - we set the height ourselves since it is fixed
+	//frame.size.height = kProgressBarHeight ;
 	[super setFrame: frame] ;
 }
 
 - (void)setBounds:(CGRect)bounds
 {
-	// we set the height ourselves since it is fixed
-	bounds.size.height = kProgressBarHeight ;
+	// NO - we set the height ourselves since it is fixed
+	// bounds.size.height = kProgressBarHeight ;
 	[super setBounds: bounds] ;
 }
 
@@ -75,7 +75,7 @@
 	
 	// we first draw the outter rounded rectangle
 	rect = CGRectInset(rect, 1.0f, 1.0f) ;
-	CGFloat radius = 0.5f * rect.size.height ;
+	CGFloat radius = 0.1f * rect.size.height ;
     
 	[outerColor setStroke] ;
 	CGContextSetLineWidth(context, 2.0f) ;
@@ -90,8 +90,8 @@
 	CGContextDrawPath(context, kCGPathStroke) ;
     
 	// draw the inside moving filled rounded rectangle
-	rect = CGRectInset(rect, 3.0f, 3.0f) ;
-	radius = 0.5f * rect.size.height ;
+	rect = CGRectInset(rect, 2.0f, 2.0f) ;
+	radius = 0.1f * rect.size.height ;
 	
 	// make sure the filled rounded rectangle is not smaller than 2 times the radius
 	rect.size.width *= progress ;
