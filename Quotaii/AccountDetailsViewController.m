@@ -37,6 +37,10 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (IBAction)storeAccountDetails:(id)sender {
     [self.delegate didRetrieveAccountUsername:self->usernameField.text Password:self->passwordField.text];
 }
