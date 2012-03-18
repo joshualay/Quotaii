@@ -6,11 +6,17 @@
 //  Copyright (c) 2012 Joshua Lay. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
+
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "AccountProvider.h"
 #import "AccountDetails.h"
 #import "DDProgressView.h"
+
+#define kLoadingWidth  100.0f
+#define kLoadingHeight 100.0f
 
 @interface MasterViewController (PrivateMethods)
 - (void)presentVolumeUsage:(iiFeed *)iiFeed;
@@ -51,14 +57,6 @@
     
     NSLog(@"viewDidLoad");
     
-    self->_activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    CGRect viewFrame = self.view.frame;
-    self->_activityIndicator.frame = CGRectMake((viewFrame.size.width / 2) - 20.0f, viewFrame.size.height/2, 40.0f, 40.0f);
-    self->_activityIndicator.backgroundColor = [UIColor blackColor];
-    
-    [self->_activityIndicator startAnimating];
-    [self.view addSubview:self->_activityIndicator];
-    
     if (![self.accountProvider hasAccountInformation]) {
         [self presentAccountDetailsView:NO];
         return;
@@ -90,6 +88,16 @@
 }
 
 - (void)retrieveVolumeUsage {
+    self->_activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];  
+    CGRect viewFrame = self.view.frame;
+    self->_activityIndicator.frame = CGRectMake((viewFrame.size.width / 2) - (kLoadingWidth / 2.0f), viewFrame.size.height/4, kLoadingWidth, kLoadingHeight);
+    [self->_activityIndicator setClipsToBounds:YES];
+    [self->_activityIndicator.layer setCornerRadius:10];
+    
+    self->_activityIndicator.backgroundColor = [UIColor blackColor];
+    
+    [self.view addSubview:self->_activityIndicator];
+    [self->_activityIndicator startAnimating];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue, ^{
         iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
