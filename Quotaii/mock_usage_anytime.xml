@@ -1,0 +1,186 @@
+<ii_feed>
+    <account_info>
+        <plan>Naked Home-1 v2</plan>
+        <product>adsl_home V2</product>
+    </account_info>
+    <volume_usage>
+        <quota_reset>
+            <anniversary>4</anniversary>
+            <days_so_far>23</days_so_far>
+            <days_remaining>9</days_remaining>
+        </quota_reset>        
+        <expected_traffic_types>
+            <type classification="anytime" used="36898431571">
+                <name>anytime</name>
+                <quota_allocation>100000</quota_allocation>
+                <is_shaped speed="0">false</is_shaped>
+            </type>
+            <type classification="uploads" used="1221492752">
+                <name>uploads</name>
+            </type>
+            <type classification="freezone" used="2673502061">
+                <name>freezone</name>
+            </type>
+        </expected_traffic_types>
+        <volume_usage>
+            <day_hour period="2012-03-04">
+                <usage type="anytime">2338409479</usage>
+                <usage type="uploads">70855146</usage>
+                <usage type="freezone">106041170</usage>
+            </day_hour>
+            <day_hour period="2012-03-05">
+                <usage type="anytime">1769485946</usage>
+                <usage type="uploads">70505680</usage>
+                <usage type="freezone">32011910</usage>
+            </day_hour>
+            <day_hour period="2012-03-06">
+                <usage type="anytime">1993032952</usage>
+                <usage type="uploads">51517757</usage>
+                <usage type="freezone">21830381</usage>
+            </day_hour>
+            <day_hour period="2012-03-07">
+                <usage type="anytime">695622219</usage>
+                <usage type="uploads">31303941</usage>
+                <usage type="freezone">236110272</usage>
+            </day_hour>
+            <day_hour period="2012-03-08">
+                <usage type="anytime">515818349</usage>
+                <usage type="uploads">25898208</usage>
+                <usage type="freezone">601676388</usage>
+            </day_hour>
+            <day_hour period="2012-03-09">
+                <usage type="anytime">1012669477</usage>
+                <usage type="uploads">85352246</usage>
+                <usage type="freezone">685994622</usage>
+            </day_hour>
+            <day_hour period="2012-03-10">
+                <usage type="anytime">413792886</usage>
+                <usage type="uploads">28079219</usage>
+                <usage type="freezone">23134287</usage>
+            </day_hour>
+            <day_hour period="2012-03-11">
+                <usage type="anytime">689587973</usage>
+                <usage type="uploads">22566604</usage>
+                <usage type="freezone">19804716</usage>
+            </day_hour>
+            <day_hour period="2012-03-12">
+                <usage type="anytime">735489522</usage>
+                <usage type="uploads">27544013</usage>
+                <usage type="freezone">87234465</usage>
+            </day_hour>
+            <day_hour period="2012-03-13">
+                <usage type="anytime">231481675</usage>
+                <usage type="uploads">11860660</usage>
+                <usage type="freezone">2032398</usage>
+            </day_hour>
+            <day_hour period="2012-03-14">
+                <usage type="anytime">481625222</usage>
+                <usage type="uploads">20087657</usage>
+                <usage type="freezone">376952537</usage>
+            </day_hour>
+            <day_hour period="2012-03-15">
+                <usage type="anytime">2908359933</usage>
+                <usage type="uploads">94109473</usage>
+                <usage type="freezone">253191178</usage>
+            </day_hour>
+            <day_hour period="2012-03-16">
+                <usage type="anytime">9464181</usage>
+                <usage type="uploads">2104023</usage>
+                <usage type="freezone">826788</usage>
+            </day_hour>
+            <day_hour period="2012-03-17">
+                <usage type="anytime">415482908</usage>
+                <usage type="uploads">17800525</usage>
+                <usage type="freezone">2029513</usage>
+            </day_hour>
+            <day_hour period="2012-03-18">
+                <usage type="anytime">979704313</usage>
+                <usage type="uploads">48529355</usage>
+                <usage type="freezone">87436080</usage>
+            </day_hour>
+            <day_hour period="2012-03-19">
+                <usage type="anytime">112246489</usage>
+                <usage type="uploads">16884130</usage>
+                <usage type="freezone">2953075</usage>
+            </day_hour>
+            <day_hour period="2012-03-20">
+                <usage type="anytime">3677020300</usage>
+                <usage type="uploads">99189948</usage>
+                <usage type="freezone">11783700</usage>
+            </day_hour>
+            <day_hour period="2012-03-21">
+                <usage type="anytime">288261488</usage>
+                <usage type="uploads">37677382</usage>
+                <usage type="freezone">24864377</usage>
+            </day_hour>
+            <day_hour period="2012-03-22">
+                <usage type="anytime">1788714203</usage>
+                <usage type="uploads">57315863</usage>
+                <usage type="freezone">15007190</usage>
+            </day_hour>
+            <day_hour period="2012-03-23">
+                <usage type="anytime">993001480</usage>
+                <usage type="uploads">55173110</usage>
+                <usage type="freezone">14686297</usage>
+            </day_hour>
+            <day_hour period="2012-03-24">
+                <usage type="anytime">7165565669</usage>
+                <usage type="uploads">156138908</usage>
+                <usage type="freezone">24438654</usage>
+            </day_hour>
+            <day_hour period="2012-03-25">
+                <usage type="anytime">2002994582</usage>
+                <usage type="uploads">52528903</usage>
+                <usage type="freezone">6051936</usage>
+            </day_hour>
+            <day_hour period="2012-03-26">
+                <usage type="anytime">5680600325</usage>
+                <usage type="uploads">138470001</usage>
+                <usage type="freezone">37410127</usage>
+            </day_hour>
+            <day_hour period="2012-03-27">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-03-28">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-03-29">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-03-30">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-03-31">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-04-01">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-04-02">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+            <day_hour period="2012-04-03">
+                <usage type="anytime">0</usage>
+                <usage type="uploads">0</usage>
+                <usage type="freezone">0</usage>
+            </day_hour>
+        </volume_usage>
+    </volume_usage>
+    <connections>
+        <ip on_since="2012-03-25 23:33:35">124.148.193.178</ip>
+    </connections>
+</ii_feed>

@@ -81,6 +81,7 @@ I'm not storing any authentication details in the provider. I feel it's better s
 - (BOOL)hasRetrievedUsage;
 
 - (iiFeed *)retrieveUsage;
+- (iiFeed *)mockRetrieveUsage;
 - (void)resetCache;
 
 @end

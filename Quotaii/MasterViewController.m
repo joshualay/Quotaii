@@ -37,8 +37,7 @@
         self.title = NSLocalizedString(@"Quotaii", @"Quotaii");
         self.volumeUsageProvider = [[iiVolumeUsageProvider alloc] init];
         self.volumeUsageProvider.delegate = self;
-        
-        self.accountProvider = [[AccountProvider alloc] init];                                
+        self.accountProvider = [[AccountProvider alloc] init];     
     }
     return self;
 }
@@ -56,6 +55,8 @@
     [super viewDidLoad];
     
     NSLog(@"viewDidLoad");
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gray_noise_tile"]];
     
     if (![self.accountProvider hasAccountInformation]) {
         [self presentAccountDetailsView:NO];
@@ -100,7 +101,9 @@
     [self->_activityIndicator startAnimating];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue, ^{
-        iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
+        // TODO - remove
+        //iiFeed *iiFeed = [self.volumeUsageProvider retrieveUsage];
+        iiFeed *iiFeed = [self.volumeUsageProvider mockRetrieveUsage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_activityIndicator stopAnimating];
@@ -112,30 +115,9 @@
     });    
 }
 
-- (void)presentVolumeUsage:(iiFeed *)iiFeed {
-    
-    float xOffset = 8.0f;
-    
-    float yOffset = 20.0f;    
-    float labelHeight = 22.0f;
-    float labelOffset = 20.0f;
-    float usageBarHeight = 54.0f;
-    float usageBarWidth = 300.0f;
-    
+- (void)presentVolumeUsage:(iiFeed *)iiFeed {     
     for (iiTraffic *trafficType in iiFeed.volumeUsage.expectedTrafficList) {
         NSLog(@"Quota: %i, Type: %i", trafficType.quota, trafficType.trafficType);
-        
-        NSInteger quota = trafficType.quota;
-        // Freezone && Uploads
-        if (quota == 0) {
-            continue; 
-        }
-        
-        NSInteger used  = (NSInteger)(trafficType.used / 1024.0f / 1024.0f);        
-        float usagePercentage = (float)used / (float)quota;
-        
-        DDProgressView *usageBar = [[DDProgressView alloc] initWithFrame:CGRectMake(xOffset, yOffset, usageBarWidth, usageBarHeight)];
-        UILabel *typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(xOffset, yOffset + labelOffset + usageBarHeight, usageBarWidth, labelHeight)];
         
         NSString *trafficTypeName = nil;
         switch (trafficType.trafficType) {
@@ -152,16 +134,37 @@
                 break;
         }
         
-        int roundedUsagePercentage = (int)(usagePercentage * 100);
+        NSInteger quota = trafficType.quota;
+        if (quota != 0) {
+            // To GB - We're using basic conversion here as Toolbox returns nice rounded quota's
+            NSInteger total = trafficType.quota / 1000;
+            
+            UILabel *usedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 100.0f, 250.0f, 55.0f)];
+            NSInteger used  = (NSInteger)(trafficType.used / 1024.0f / 1024.0f);        
+            if (used < 1024) {
+                usedLabel.text = [NSString stringWithFormat:@"%iMB used", used];
+            }
+            else {
+                usedLabel.text = [NSString stringWithFormat:@"%.2fGB used", (used/1024.0f)];
+            }
+            
+            [self.view addSubview:usedLabel];
+            
+            UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 160.0f, 250.0f, 55.0f)];
+            totalLabel.text = [NSString stringWithFormat:@"total %iGB", total];
+            [self.view addSubview:totalLabel];
+            
+            float usagePercentage = (float)used / (float)quota;
+            
+            DDProgressView *usageBar = [[DDProgressView alloc] initWithFrame:CGRectMake(10.0f, 50.0f, 250.0f, 55.0f)];
+            
+            int roundedUsagePercentage = (int)(usagePercentage * 100);
+            NSString *percentageUsedString = [NSString stringWithFormat:@"%@ (%i%%)", trafficTypeName, roundedUsagePercentage];
+            
+            [usageBar setProgress:usagePercentage];
+            [self.view addSubview:usageBar];
+        }
         
-        typeLabel.text = [NSString stringWithFormat:@"%@ (%i%%)", trafficTypeName, roundedUsagePercentage];
-        
-        [usageBar setProgress:usagePercentage];
-        
-        [self.view addSubview:typeLabel];
-        [self.view addSubview:usageBar];
-        
-        yOffset += (usageBarHeight + labelHeight + labelOffset);
     }
     
     [self dismissModalViewControllerAnimated:NO];

@@ -12,6 +12,8 @@
 		983E199C150B826F001E6684 /* AccountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E199B150B826F001E6684 /* AccountDetails.m */; };
 		983E19A0150B894C001E6684 /* AccountDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E199E150B894C001E6684 /* AccountDetailsViewController.m */; };
 		983E19A1150B894C001E6684 /* AccountDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 983E199F150B894C001E6684 /* AccountDetailsViewController.xib */; };
+		98996D6C1518BC87009993C4 /* gray_noise_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 98996D6B1518BC87009993C4 /* gray_noise_tile.png */; };
+		98996D741520836A009993C4 /* mock_usage_anytime.xml in Resources */ = {isa = PBXBuildFile; fileRef = 98996D731520836A009993C4 /* mock_usage_anytime.xml */; };
 		98DADE8B15032DCE0031FBC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8A15032DCE0031FBC4 /* UIKit.framework */; };
 		98DADE8D15032DCE0031FBC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8C15032DCE0031FBC4 /* Foundation.framework */; };
 		98DADE8F15032DCE0031FBC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DADE8E15032DCE0031FBC4 /* CoreGraphics.framework */; };
@@ -48,6 +50,8 @@
 		983E199D150B894C001E6684 /* AccountDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDetailsViewController.h; sourceTree = "<group>"; };
 		983E199E150B894C001E6684 /* AccountDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDetailsViewController.m; sourceTree = "<group>"; };
 		983E199F150B894C001E6684 /* AccountDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsViewController.xib; sourceTree = "<group>"; };
+		98996D6B1518BC87009993C4 /* gray_noise_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_noise_tile.png; sourceTree = "<group>"; };
+		98996D731520836A009993C4 /* mock_usage_anytime.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mock_usage_anytime.xml; sourceTree = "<group>"; };
 		98DADE8615032DCE0031FBC4 /* Quotaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quotaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DADE8A15032DCE0031FBC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		98DADE8C15032DCE0031FBC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -140,6 +144,7 @@
 		98DADE9015032DCE0031FBC4 /* Quotaii */ = {
 			isa = PBXGroup;
 			children = (
+				98996D6B1518BC87009993C4 /* gray_noise_tile.png */,
 				98DADEDD1503312C0031FBC4 /* VolumeUsageAPI */,
 				98DADE9915032DCE0031FBC4 /* AppDelegate.h */,
 				98DADE9A15032DCE0031FBC4 /* AppDelegate.m */,
@@ -159,6 +164,7 @@
 				983E199E150B894C001E6684 /* AccountDetailsViewController.m */,
 				983E199F150B894C001E6684 /* AccountDetailsViewController.xib */,
 				98DADE9115032DCE0031FBC4 /* Supporting Files */,
+				98996D731520836A009993C4 /* mock_usage_anytime.xml */,
 			);
 			path = Quotaii;
 			sourceTree = "<group>";
@@ -262,6 +268,8 @@
 				98DADEA715032DCE0031FBC4 /* DetailViewController.xib in Resources */,
 				98DADEAE15032DE60031FBC4 /* README.md in Resources */,
 				983E19A1150B894C001E6684 /* AccountDetailsViewController.xib in Resources */,
+				98996D6C1518BC87009993C4 /* gray_noise_tile.png in Resources */,
+				98996D741520836A009993C4 /* mock_usage_anytime.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

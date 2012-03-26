@@ -139,6 +139,79 @@ NSInteger const kMillisecondsToMinutes = 60000;
     return (feed == nil) ? NO : YES;
 }
 
+#pragma mark - Mock
+- (iiFeed *)mockRetrieveUsage {
+    if ([self.delegate respondsToSelector:@selector(didBeginRetrieveUsage)])
+        [self.delegate didBeginRetrieveUsage];
+    
+    if (self->_lastRetrieved != nil && [self->_cache objectForKey:kCacheFeedKey] != nil) {
+        NSTimeInterval elapsedTimeSinceLastCache = [self->_lastRetrieved timeIntervalSinceNow];
+        double minutes = elapsedTimeSinceLastCache * kMillisecondsToMinutes
+        ;
+        if (minutes <= kCacheExpiryMinutes) {
+            if ([self.delegate respondsToSelector:@selector(didUseCachedResult)])
+                [self.delegate didUseCachedResult];
+            
+            return [self->_cache objectForKey:kCacheFeedKey];
+        }
+    }
+    
+    self->_errorFlagged = NO;
+    self->_error = nil;
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource: @"mock_usage_anytime" ofType: @"xml"];
+    NSData* responseData = [NSData dataWithContentsOfFile: path];
+    
+    // Construct the parser object with our NSData
+    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:responseData];
+    if (xmlParser != nil) {
+        xmlParser.delegate = self;
+        
+        // Run the parser - We implement the delegate methods of the parser to build the object model whilst it parses
+        BOOL parsingResult = [xmlParser parse];
+        if (!parsingResult) {
+            NSError *parsingError = [xmlParser parserError];
+            if ([self.delegate respondsToSelector:@selector(didHaveParsingError:)])
+                [self.delegate didHaveParsingError:[parsingError localizedDescription]];
+        }
+        // If we've parsed successfully check if we encountered any errors
+        else {
+            if (self->_errorFlagged) {
+                self->_error = [self->_error stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                if ([self->_error isEqualToString:ErrorAuthentication]) 
+                    [self.delegate didHaveAuthenticationError:self->_error];
+                else if ([self->_error isEqualToString:ErrorToolboxLoad]) {
+                    if ([self.delegate respondsToSelector:@selector(didHaveToolboxUnderLoadError:)])
+                        [self.delegate didHaveToolboxUnderLoadError:self->_error];
+                }
+                else {
+                    if ([self.delegate respondsToSelector:@selector(didHaveGenericError:)])
+                        [self.delegate didHaveGenericError:self->_error];
+                }
+                return nil;
+            }
+        }
+    }
+    else {
+        if ([self.delegate respondsToSelector:@selector(didHaveXMLConstructionError)]) {
+            [self.delegate didHaveXMLConstructionError];
+        }
+        return nil;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(didFinishRetrieveUsage)]) 
+        [self.delegate didFinishRetrieveUsage];
+    
+    iiFeed *feed = [[iiFeed alloc] initFeedWith:self->_accountInfo volumeUsage:self->_volumeUsage connection:self->_connection];
+    if (feed == nil)
+        return nil;
+    
+    self->_lastRetrieved = [NSDate date];
+    [self->_cache setObject:feed forKey:kCacheFeedKey];
+    
+    return [self->_cache objectForKey:kCacheFeedKey];    
+}
+
 #pragma mark - NSXMLParserDelegate
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     if (self->_errorFlagged)
