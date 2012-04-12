@@ -10,6 +10,8 @@
 #import "AccountProvider.h"
 #import "AccountDetails.h"
 
+#import "KeychainItemWrapper.h"
+
 @interface AccountProvider (PrivateMethods)
 - (AccountDetails *)retrieveAccountDetailsOrNil;
 - (void)retrieveAccountInformation;
@@ -21,6 +23,7 @@
     self = [super init];
     if (self != nil) {
         [self retrieveAccountInformation];
+        self->_keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"Quotaii" accessGroup:nil];
     }
     return self;
 }
@@ -36,10 +39,15 @@
         return;
     
     self->_accountDetails = accountDetails;
+    
+    [self->_keychain setObject:accountDetails.username forKey:(__bridge id)kSecAttrAccount];
+    [self->_keychain setObject:accountDetails.password forKey:(__bridge id)kSecValueData];
+    
+    NSLog(@"store:accountDetails - username: %@", accountDetails.username);
 }
 
 - (void)resetAccount {
-
+    [self->_keychain resetKeychainItem];
 }
 
 - (NSString *)username {
@@ -62,14 +70,16 @@
     self->_accountDetails = ad;
 }
 
-- (AccountDetails *)retrieveAccountDetailsOrNil {
-    // TODO
-    NSString *username = @"";
+- (AccountDetails *)retrieveAccountDetailsOrNil {   
+    id something = [self->_keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *username = (NSString *)[self->_keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSLog(@"retrieveAccountDetailsOrNil : username: %@", username);
     if (username == nil || [username isEqualToString:@""])
         return nil;
     
+    NSString *password = (NSString *)[self->_keychain objectForKey:(__bridge id)kSecValueData];
     AccountDetails *accountDetails = [[AccountDetails alloc] initWithUsername:username 
-                                                                     Password:@"0"];
+                                                                     Password:password];
     self->_accountDetails = accountDetails;
     
     return self->_accountDetails;

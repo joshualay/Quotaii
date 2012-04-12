@@ -38,6 +38,7 @@
 		98DADEDA150331200031FBC4 /* iiVolumeUsageBreakdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADECC150331200031FBC4 /* iiVolumeUsageBreakdown.m */; };
 		98DADEDB150331200031FBC4 /* iiVolumeUsageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADECE150331200031FBC4 /* iiVolumeUsageProvider.m */; };
 		98DADEDC150331200031FBC4 /* XMLElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DADED0150331200031FBC4 /* XMLElements.m */; };
+		98E189C31536EA57003BDD01 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E189C11536E74E003BDD01 /* KeychainItemWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,8 @@
 		98DADECE150331200031FBC4 /* iiVolumeUsageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iiVolumeUsageProvider.m; sourceTree = "<group>"; };
 		98DADECF150331200031FBC4 /* XMLElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLElements.h; sourceTree = "<group>"; };
 		98DADED0150331200031FBC4 /* XMLElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLElements.m; sourceTree = "<group>"; };
+		98E189C01536E74E003BDD01 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		98E189C11536E74E003BDD01 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				983E199D150B894C001E6684 /* AccountDetailsViewController.h */,
 				983E199E150B894C001E6684 /* AccountDetailsViewController.m */,
 				983E199F150B894C001E6684 /* AccountDetailsViewController.xib */,
+				98E189C01536E74E003BDD01 /* KeychainItemWrapper.h */,
+				98E189C11536E74E003BDD01 /* KeychainItemWrapper.m */,
 				98DADE9115032DCE0031FBC4 /* Supporting Files */,
 				98996D731520836A009993C4 /* mock_usage_anytime.xml */,
 			);
@@ -280,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E189C31536EA57003BDD01 /* KeychainItemWrapper.m in Sources */,
 				98DADE9715032DCE0031FBC4 /* main.m in Sources */,
 				98DADE9B15032DCE0031FBC4 /* AppDelegate.m in Sources */,
 				98DADE9E15032DCE0031FBC4 /* MasterViewController.m in Sources */,

@@ -18,6 +18,8 @@
 #define kLoadingWidth  100.0f
 #define kLoadingHeight 100.0f
 
+#define kSubviewWidth 300.0f
+
 @interface MasterViewController (PrivateMethods)
 - (void)presentVolumeUsage:(iiFeed *)iiFeed;
 - (void)presentAccountDetailsView:(BOOL)animate;
@@ -58,6 +60,8 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gray_noise_tile"]];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     if (![self.accountProvider hasAccountInformation]) {
         [self presentAccountDetailsView:NO];
         return;
@@ -68,6 +72,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self retrieveVolumeUsage];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -136,27 +141,31 @@
         
         NSInteger quota = trafficType.quota;
         if (quota != 0) {
+            UILabel *trafficTypeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, kSubviewWidth, 50.0f)];
+            trafficTypeLabel.text = trafficTypeName;
+            [self.view addSubview:trafficTypeLabel];
+            
             // To GB - We're using basic conversion here as Toolbox returns nice rounded quota's
             NSInteger total = trafficType.quota / 1000;
             
-            UILabel *usedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 100.0f, 250.0f, 55.0f)];
+            UILabel *usedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 110.0f, kSubviewWidth, 55.0f)];
             NSInteger used  = (NSInteger)(trafficType.used / 1024.0f / 1024.0f);        
             if (used < 1024) {
-                usedLabel.text = [NSString stringWithFormat:@"%iMB used", used];
+                usedLabel.text = [NSString stringWithFormat:@"%iMB", used];
             }
             else {
-                usedLabel.text = [NSString stringWithFormat:@"%.2fGB used", (used/1024.0f)];
+                usedLabel.text = [NSString stringWithFormat:@"%.2fGB", (used/1024.0f)];
             }
             
             [self.view addSubview:usedLabel];
             
-            UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 160.0f, 250.0f, 55.0f)];
-            totalLabel.text = [NSString stringWithFormat:@"total %iGB", total];
+            UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 170.0f, kSubviewWidth, 55.0f)];
+            totalLabel.text = [NSString stringWithFormat:@"%iGB", total];
             [self.view addSubview:totalLabel];
             
             float usagePercentage = (float)used / (float)quota;
             
-            DDProgressView *usageBar = [[DDProgressView alloc] initWithFrame:CGRectMake(10.0f, 50.0f, 250.0f, 55.0f)];
+            DDProgressView *usageBar = [[DDProgressView alloc] initWithFrame:CGRectMake(10.0f, 50.0f, kSubviewWidth, 55.0f)];
             
             int roundedUsagePercentage = (int)(usagePercentage * 100);
             NSString *percentageUsedString = [NSString stringWithFormat:@"%@ (%i%%)", trafficTypeName, roundedUsagePercentage];
