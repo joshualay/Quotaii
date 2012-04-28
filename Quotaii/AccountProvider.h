@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @class AccountDetails;
-@class KeychainItemWrapper;
 
 @interface AccountProvider : NSObject {
     AccountDetails *_accountDetails;
-    KeychainItemWrapper *_keychain;
 }
 
 - (NSString *)username;

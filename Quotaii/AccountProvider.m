@@ -10,7 +10,10 @@
 #import "AccountProvider.h"
 #import "AccountDetails.h"
 
-#import "KeychainItemWrapper.h"
+#import "Lockbox.h"
+
+#define kUsernameString @"lockboxUsernameKey"
+#define kPasswordString @"lockboxPasswordKey"
 
 @interface AccountProvider (PrivateMethods)
 - (AccountDetails *)retrieveAccountDetailsOrNil;
@@ -23,7 +26,6 @@
     self = [super init];
     if (self != nil) {
         [self retrieveAccountInformation];
-        self->_keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"Quotaii" accessGroup:nil];
     }
     return self;
 }
@@ -40,14 +42,17 @@
     
     self->_accountDetails = accountDetails;
     
-    [self->_keychain setObject:accountDetails.username forKey:(__bridge id)kSecAttrAccount];
-    [self->_keychain setObject:accountDetails.password forKey:(__bridge id)kSecValueData];
+    [self resetAccount];
     
     NSLog(@"store:accountDetails - username: %@", accountDetails.username);
+    
+    BOOL didSetUsername = [Lockbox setString:self->_accountDetails.username forKey:kUsernameString];
+    BOOL didSetPassword = [Lockbox setString:self->_accountDetails.password forKey:kPasswordString];
 }
 
 - (void)resetAccount {
-    [self->_keychain resetKeychainItem];
+    [Lockbox setString:nil forKey:kUsernameString];
+    [Lockbox setString:nil forKey:kPasswordString];
 }
 
 - (NSString *)username {
@@ -71,13 +76,12 @@
 }
 
 - (AccountDetails *)retrieveAccountDetailsOrNil {   
-    id something = [self->_keychain objectForKey:(__bridge id)kSecAttrAccount];
-    NSString *username = (NSString *)[self->_keychain objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *username = [Lockbox stringForKey:kUsernameString];
     NSLog(@"retrieveAccountDetailsOrNil : username: %@", username);
     if (username == nil || [username isEqualToString:@""])
         return nil;
     
-    NSString *password = (NSString *)[self->_keychain objectForKey:(__bridge id)kSecValueData];
+    NSString *password = [Lockbox stringForKey:kPasswordString];
     AccountDetails *accountDetails = [[AccountDetails alloc] initWithUsername:username 
                                                                      Password:password];
     self->_accountDetails = accountDetails;
